@@ -74,13 +74,13 @@ $recette = $recettes[$id];
         <div class="column is-half">
           <article>
             <div class="h3 title">Étapes de la recette</div>
-            <ol class="list">
+            <ol class="list" type="1">
               
-                <li class="list-item">Casser les oeufs</li>
-                <li class="list-item">Écraser les avocats </li>
-                <li class="list-item">Tartiner le beurre</li>
-                <li class="list-item">Saupoudrer de canelle</li>
-                <li class="list-item">Cuire 30 minutes avec soin</li>
+                <li class="list-item">1. Casser les oeufs</li>
+                <li class="list-item">2. Écraser les avocats </li>
+                <li class="list-item">3. Tartiner le beurre</li>
+                <li class="list-item">4. Saupoudrer de canelle</li>
+                <li class="list-item">5. Cuire 30 minutes avec soin</li>
             </ol>
           </article>
         </div>

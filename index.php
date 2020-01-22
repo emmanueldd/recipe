@@ -2,6 +2,7 @@
 session_start();
 $recettes = $_SESSION['recettes'] ?? [];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +26,12 @@ $recettes = $_SESSION['recettes'] ?? [];
           <article>
             <div class="h3 title">Ma liste</div>
             <ul class="list">
-              <?php foreach($recettes as $k => $r): ?>
+              <?php foreach($recettes as $key => $recette): ?>
                 <li class="list-item">
-                  <a href="recette.php?id=<?php echo $k;?>">
-                    <?php echo $r['name'];?>
+                  <a href="recette.php?id=<?php echo $key;?>">
+                    <?php echo $recette['name'];?>
                   </a>
-                  <small><em><?php echo $r['created_at'];?></em></small>
+                  <small><em><?php echo $recette['created_at'];?></em></small>
                 </li>
               <?php endforeach; ?>
             </ul>
@@ -48,6 +49,6 @@ $recettes = $_SESSION['recettes'] ?? [];
       </div>
     </div>
   </section>
-  
+
 </body>
 </html>

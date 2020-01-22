@@ -7,9 +7,12 @@ $id = $_GET['id'];
 //on récupère la liste des recettes
 $recettes = $_SESSION['recettes'] ?? [];
 
-
 //on récupère la recette qui se trouve à la position $id
 $recette = $recettes[$id];
+$ingredients = $_SESSION['recettes'][$id]['ingredients'];
+echo '<pre>';
+var_dump($ingredients);
+echo '</pre>';
 
 /*
   Exo 4 :
@@ -17,6 +20,10 @@ $recette = $recettes[$id];
    - Permettre d'ajouter un ingrédient
    - Permettre d'ajouter une étape
 */
+
+
+// $recettes[1]['ingredients'] => [ 0 => 'chocolat', 1 => 'sucre']
+// $recettes[1]['steps'] => [ 0 => 'Mélanger le chocolat', 1 => 'Ajouter le sucre']
 
 /*
   Exo 5 :
@@ -29,7 +36,7 @@ $recette = $recettes[$id];
      - Pour chaque étape, rajouter une durée
      - Afficher cette durée sur la page d'accueil
      - Pouvoir trier les recettes par durée ou alphabétique
-    */  
+    */
 
      ?>
      <!DOCTYPE html>
@@ -43,7 +50,7 @@ $recette = $recettes[$id];
      <body>
 
       <h1 class="title"><?php echo $recette['name'];?> <small>créée le <?php echo $recette['created_at'];?></small></h1>
-       
+
        <section>
     <div class="container">
       <div class="columns">
@@ -51,20 +58,17 @@ $recette = $recettes[$id];
           <article>
             <div class="h3 title">Ingrédients</div>
             <ul class="list">
-              
-                <li class="list-item">2 oeufs</li>
-                <li class="list-item">3 avocats</li>
-                <li class="list-item">950g de beurre</li>
-                <li class="list-item">un soupçon de cannelle</li>
-                <li class="list-item">de l'amour</li>
+              <?php foreach ($ingredients as $key => $ingredient) { ?>
+                <li class="list-item"><?php echo $ingredient; ?></li>
+              <?php } ?>
             </ul>
           </article>
         </div>
         <div class="column is-half">
           <article>
             <h3 class="title">Ajouter un ingrédient</h3>
-            <form action="???" method="POST">
-              <input type="text" class="input is-fullwidth" name="element" placeholder="Ingrédient"><br>
+            <form action="add_ingredient.php?recette_id=<?php echo $_GET['id']; ?>" method="POST">
+              <input type="text" class="input is-fullwidth" name="ingredient" placeholder="Ingrédient"><br>
               <button type="submit" class="button is-small is-success">Ajouter</button>
             </form>
           </article>
@@ -75,7 +79,7 @@ $recette = $recettes[$id];
           <article>
             <div class="h3 title">Étapes de la recette</div>
             <ol class="list" type="1">
-              
+
                 <li class="list-item">1. Casser les oeufs</li>
                 <li class="list-item">2. Écraser les avocats </li>
                 <li class="list-item">3. Tartiner le beurre</li>

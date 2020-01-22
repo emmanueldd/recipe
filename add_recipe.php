@@ -1,14 +1,17 @@
 <?php
 session_start();
 
-var_dump($_SESSION);
-
 $name = $_POST['recipe_name'];
 
-$_SESSION["recipe_name"] = $name;
+if(!isset($_SESSION['recettes'])){
+  $_SESSION['recettes'] = [];
+}
 
+$newRecette = ["name" => $name,
+               "created_at" => date("Y-m-d H:i:s")
+              ];
 
-var_dump($_SESSION);
+$_SESSION['recettes'][] = $newRecette;
 
 
 
@@ -17,5 +20,5 @@ var_dump($_SESSION);
 //Exo 3 : afficher la liste
 
 
-//header("Location: /");
-//exit;
+header("Location: /");
+exit;

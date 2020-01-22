@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION);
+$recettes = $_SESSION['recettes'] ?? [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +8,10 @@ var_dump($_SESSION);
   <meta charset="UTF-8">
   <title>Mon livre de recettes</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" crossorigin="anonymous">
+  <style>
+    small{font-size: 0.6em;color: grey;}
+  </style>
 </head>
 <body>
 
@@ -21,9 +25,14 @@ var_dump($_SESSION);
           <article>
             <div class="h3 title">Ma liste</div>
             <ul class="list">
-              <li class="list-item">Tarte au citron</li>
-              <li class="list-item">Chouquettes au sucre</li>
-              <li class="list-item">Crêpe au Nutella maison</li>
+              <?php foreach($recettes as $k => $r): ?>
+                <li class="list-item">
+                  <a href="recette.php?id=<?php echo $k;?>">
+                    <?php echo $r['name'];?>
+                  </a>
+                  <small><em><?php echo $r['created_at'];?></em></small>
+                </li>
+              <?php endforeach; ?>
             </ul>
           </article>
         </div>
